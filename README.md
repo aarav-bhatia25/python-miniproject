@@ -4,7 +4,29 @@
 
 A Python desktop dashboard for viewing and managing sample mission data for **SomaiyaSat** (the satellite) and **SomaiyaPod** (its deployer). The first version should be a small, understandable application built with **Python, SQLite, and Tkinter**, using synthetic data stored locally.
 
-**Status:** Planning only. The application and database have not been implemented yet. The file structure and features below are proposed.
+**Status:** The first version is implemented: three screens, date/mode/status filters, record notes, overview totals, and synthetic data saved in SQLite. The UI uses a dark space theme, status cards, coloured table rows, and a battery history chart drawn with Tkinter Canvas. Add/edit/delete forms and CSV export are still optional future work. The original project plan is kept below.
+
+## Run the dashboard
+
+From this folder, run:
+
+```bash
+python3 main.py
+```
+
+Use Python 3 with Tkinter installed. No pip packages are required. You can check Tkinter with `python3 -m tkinter`.
+
+The first launch creates `data/mission.db` with 200 telemetry readings, 80 communication records, and six mission events. Later launches reuse that database. The database is ignored by Git so each teammate gets their own demo data.
+
+Sample telemetry covers **15-16 January 2026 (UTC)**. Use those dates when trying filters. Refresh reads saved records; it does not simulate live updates. The demo link score, record sizes, and Safe mode threshold are illustrative assumptions.
+
+Run the database tests with:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+The tests use temporary databases and do not change the dashboard's data.
 
 ## How this fits the space use case
 
@@ -154,7 +176,7 @@ For the report or viva, include the problem statement, scope, table definitions,
 ## Optional additions after the core works
 
 - Export the filtered table with the standard-library `csv` module.
-- Add one simple battery trend using `tkinter.Canvas` if a chart improves the presentation.
+- Implemented: a battery history chart using `tkinter.Canvas`, with an illustrative 20% threshold.
 - Add a stored sample pass schedule if the instructor specifically wants communication windows.
 
 Keep these optional. The core project is complete when the three screens display consistent persisted data, navigation and filters work, and the demo can be explained using the Python concepts taught in labs.
